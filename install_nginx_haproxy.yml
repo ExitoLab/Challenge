@@ -4,6 +4,9 @@
   sudo: yes
 
   tasks:
+  
+  - name: update the packages
+    apt: update_cache=yes
 
   - name: install nginx server
     apt: name=nginx state=installed

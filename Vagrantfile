@@ -18,6 +18,11 @@ Vagrant.configure("2") do |config|
 			vb.memory = 1024
 		end
 		
+		loadBalancer.vm.provision "file", source: "add_ssh_key.yml", destination: "/home/vagrant/add_ssh_key.yml"
+		loadBalancer.vm.provision "file", source: "ansible.cfg", destination: "/home/vagrant/ansible.cfg"
+		loadBalancer.vm.provision "file", source: "install_nginx_haproxy.yml", destination: "/home/vagrant/install_nginx_haproxy.yml"
+		loadBalancer.vm.provision "file", source: "inventory.ini", destination: "/home/vagrant/inventory.ini"		
+		loadBalancer.vm.provision "file", source: "templates/", destination: "/home/vagrant/templates"
 		loadBalancer.vm.provision :shell, path: "bootstrap_setup.sh"
 	end 
 	
