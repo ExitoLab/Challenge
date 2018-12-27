@@ -31,3 +31,23 @@ Ha proxy was also tested by stop nginx service on 1 instance (webserver1) and no
 
 
 add_header X-Backend-Server $hostname which is a config in nginx.conf will display the hostname of originating traffic when executing a curl command 
+
+
+To run the script do the following. Run the following commands 
+
+Do a git clone on the repo and cd into the newly pulled repo 
+
+Run the following commands 
+
+vagrant up
+vagrant ssh lb_mgt 
+ssh-keyscan lb webServer1 webServer2  >> /home/vagrant/.ssh/known_hosts
+ssh-keygen -t rsa -b 2048  
+ansible all -m ping --ask-pass  
+ansible all -m ping  
+
+Run cd /etc/ansible 
+And run  
+ansible-playbook add_ssh_key.yml --ask-pass 
+ansible-playbook add_ssh_key.yml 
+ansible-playbook install_nginx_haproxy.yml
